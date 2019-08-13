@@ -13,10 +13,10 @@ class TaskDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_
     }
 
     // SQLite
-    // Tipos suportados: INTERGER, REAL, TEXT e BLOB
+    // Tipos suportados: INTEGER, REAL, TEXT e BLOB
     private val mCreateTableUser =
         """CREATE TABLE ${USER.TABLE_NAME} ( 
-                ${USER.COLUMNS.ID} INTERGER PRIMARY KEY AUTOINCREMENT,
+                ${USER.COLUMNS.ID} INTEGER PRIMARY KEY AUTOINCREMENT,
                 ${USER.COLUMNS.NAME} TEXT,
                 ${USER.COLUMNS.EMAIL} TEXT,
                 ${USER.COLUMNS.PASSWORD} TEXT 
