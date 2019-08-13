@@ -18,6 +18,10 @@ class UserBusiness(val context: Context) {
                 throw ValidationException(context.getString(R.string.informe_todos_campos))
             }
 
+            if(mUserRepository.isEmailExistente(email)) {
+                throw ValidationException(context.getString(R.string.email_em_uso))
+            }
+
             userId = mUserRepository.insert(name, email, password)
 
         } catch (e: Exception) {

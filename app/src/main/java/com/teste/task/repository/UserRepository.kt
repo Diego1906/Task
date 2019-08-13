@@ -2,6 +2,7 @@ package com.teste.task.repository
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import com.teste.task.constants.DataBaseConstants.*
 
 class UserRepository private constructor(context: Context) {
@@ -29,5 +30,23 @@ class UserRepository private constructor(context: Context) {
         insertValues.put(USER.COLUMNS.PASSWORD, password)
 
         return db.insert(USER.TABLE_NAME, null, insertValues).toInt()
+    }
+
+    fun isEmailExistente(email: String): Boolean {
+
+        try {
+            val db = mTaskDataBaseHelper.readableDatabase
+
+            val projection = arrayOf(USER.COLUMNS.ID)
+            val selection = "${USER.COLUMNS.EMAIL} = ?"
+            val selectionArgs = arrayOf(email)
+
+            return db.query(
+                USER.TABLE_NAME, projection, selection, selectionArgs, null, null, null
+            ).count > 0
+
+        } catch (e: Exception) {
+            throw e
+        }
     }
 }
