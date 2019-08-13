@@ -52,6 +52,8 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             e.message?.let {
                 messageShow(it)
             }
+        } catch (e: Exception) {
+            messageShow(getString(R.string.erro_inesperado))
         }
     }
 

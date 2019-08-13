@@ -17,4 +17,6 @@
     <string name="email">E-mail</string>
     <string name="senha">Senha</string>
     <string name="cadastrar">Cadastrar</string>
+    <string name="informe_todos_campos">É necessário preencher todos os campos.</string>
+    <string name="erro_inesperado">Algo de errado aconteceu! Tente novamente!</string>
 </resources>
