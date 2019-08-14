@@ -1,6 +1,5 @@
 package com.teste.task.views
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -9,6 +8,7 @@ import com.teste.task.R
 import com.teste.task.business.UserBusiness
 import com.teste.task.constants.TaskConstants
 import com.teste.task.util.SecurityPreferences
+import com.teste.task.util.extensions.startNewActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
@@ -41,13 +41,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun verifyLoggedUser() {
-        val id = mSecurityPreferences.getStoredString(TaskConstants.KEY.ID)
+        val id = mSecurityPreferences.getStoredString(TaskConstants.KEY.USER_ID)
         val nome = mSecurityPreferences.getStoredString(TaskConstants.KEY.NAME)
         val email = mSecurityPreferences.getStoredString(TaskConstants.KEY.EMAIL)
 
         // Usuário Logado
         if (id.isNotEmpty() && nome.isNotEmpty() && email.isNotEmpty()) {
-            startNewActivity()
+            this.startNewActivity(MainActivity())
         }
     }
 
@@ -59,11 +59,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             Snackbar.make(loginLayout, getString(R.string.usuario_senha_incorretos), Snackbar.LENGTH_LONG).show()
             return
         }
-        startNewActivity()
-    }
 
-    private fun startNewActivity() {
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
+        this.startNewActivity(MainActivity())
     }
 }

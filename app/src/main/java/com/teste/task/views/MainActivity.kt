@@ -1,5 +1,6 @@
 package com.teste.task.views
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.Snackbar
@@ -57,10 +58,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_todo -> {
             }
             R.id.nav_logout -> {
+                handleLogout()
             }
         }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
+
+    private fun handleLogout(){
+//        startNewActivity(LoginActivity())
+    }
+
+//    private fun startNewActivity(activity: AppCompatActivity) {
+//        startActivity(Intent(this, activity::class.java))
+//        finish()
+//    }
 }
