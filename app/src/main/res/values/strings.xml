@@ -20,4 +20,6 @@
     <string name="informe_todos_campos">É necessário preencher todos os campos.</string>
     <string name="erro_inesperado">Algo de errado aconteceu! Tente novamente!</string>
     <string name="email_em_uso">Email já está em uso.</string>
+    <string name="entrar">Entrar</string>
+    <string name="usuario_senha_incorretos">Usuário e/ou senha incorretos.</string>
 </resources>

@@ -43,18 +43,18 @@ class UserRepository private constructor(context: Context) {
             val cursor: Cursor
             val db = mTaskDataBaseHelper.readableDatabase
 
-            val projection = arrayOf(
+            val columns = arrayOf(
                 USER.COLUMNS.ID,
                 USER.COLUMNS.NAME,
                 USER.COLUMNS.EMAIL,
                 USER.COLUMNS.PASSWORD
             )
 
-            val selection = "${USER.COLUMNS.EMAIL} = ? AND ${USER.COLUMNS.PASSWORD} = ?"
-            val selectionArgs = arrayOf(email, password)
+            val filters = "${USER.COLUMNS.EMAIL} = ? AND ${USER.COLUMNS.PASSWORD} = ?"
+            val valueFilters = arrayOf(email, password)
 
             cursor = db.query(
-                USER.TABLE_NAME, projection, selection, selectionArgs, null, null, null
+                USER.TABLE_NAME, columns, filters, valueFilters, null, null, null
             )
 
             if (cursor.count > 0) {

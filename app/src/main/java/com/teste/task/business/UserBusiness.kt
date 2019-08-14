@@ -13,7 +13,10 @@ class UserBusiness(val context: Context) {
     private val mUserRepository: UserRepository = UserRepository.getInstance(context)
     private val mSecurityPreferences: SecurityPreferences = SecurityPreferences(context)
 
-    fun login(email: String, password: String) {
+    fun login(email: String, password: String): Boolean {
+
+        var retorno = false
+
         val user: UserEntity? = mUserRepository.getLogin(email, password)
 
         user?.let {
@@ -21,7 +24,11 @@ class UserBusiness(val context: Context) {
             mSecurityPreferences.storeString(TaskConstants.KEY.USER_ID, it.id.toString())
             mSecurityPreferences.storeString(TaskConstants.KEY.NAME, it.nome)
             mSecurityPreferences.storeString(TaskConstants.KEY.EMAIL, it.email)
+
+            retorno = true
         }
+
+        return retorno
     }
 
     fun insert(name: String, email: String, password: String) {

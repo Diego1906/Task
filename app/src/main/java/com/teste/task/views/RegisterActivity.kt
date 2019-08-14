@@ -1,5 +1,6 @@
 package com.teste.task.views
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -46,7 +47,8 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
             mUserBusiness.insert(name, email, password)
 
-            messageShow("Usuário cadastrado com sucesso.")
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
 
         } catch (e: ValidationException) {
             e.message?.let {
