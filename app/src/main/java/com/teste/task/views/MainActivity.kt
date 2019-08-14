@@ -1,6 +1,5 @@
 package com.teste.task.views
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.Snackbar
@@ -12,8 +11,13 @@ import android.support.design.widget.NavigationView
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import com.teste.task.R
+import com.teste.task.constants.TaskConstants
+import com.teste.task.util.SecurityPreferences
+import com.teste.task.util.extensions.startNewActivity
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    private lateinit var mSecurityPreferences: SecurityPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,14 +26,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        val fab: FloatingActionButton = findViewById(R.id.fab)
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
-
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        val navView: NavigationView = findViewById(R.id.nav_view)
         val toggle = ActionBarDrawerToggle(
             this, drawerLayout, toolbar,
             R.string.navigation_drawer_open,
@@ -38,7 +35,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
+        val navView: NavigationView = findViewById(R.id.nav_view)
         navView.setNavigationItemSelectedListener(this)
+
+        // Instância variáveis
+        mSecurityPreferences = SecurityPreferences(this)
     }
 
     override fun onBackPressed() {
@@ -66,12 +67,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
-    private fun handleLogout(){
-//        startNewActivity(LoginActivity())
-    }
+    private fun handleLogout() {
+        // Apagar os dados do usuário
+        mSecurityPreferences.removeStoredString(TaskConstants.KEY.USER_ID)
+        mSecurityPreferences.removeStoredString(TaskConstants.KEY.NAME)
+        mSecurityPreferences.removeStoredString(TaskConstants.KEY.EMAIL)
 
-//    private fun startNewActivity(activity: AppCompatActivity) {
-//        startActivity(Intent(this, activity::class.java))
-//        finish()
-//    }
+        this.startNewActivity(LoginActivity())
+    }
 }
