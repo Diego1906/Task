@@ -3,6 +3,7 @@ package com.teste.task.business
 import android.content.Context
 import com.teste.task.R
 import com.teste.task.constants.TaskConstants
+import com.teste.task.entities.UserEntity
 import com.teste.task.repository.UserRepository
 import com.teste.task.util.SecurityPreferences
 import com.teste.task.util.ValidationException
@@ -11,6 +12,17 @@ class UserBusiness(val context: Context) {
 
     private val mUserRepository: UserRepository = UserRepository.getInstance(context)
     private val mSecurityPreferences: SecurityPreferences = SecurityPreferences(context)
+
+    fun login(email: String, password: String) {
+        val user: UserEntity? = mUserRepository.getLogin(email, password)
+
+        user?.let {
+            // Salvar dados do usuário no sharedPreferences
+            mSecurityPreferences.storeString(TaskConstants.KEY.USER_ID, it.id.toString())
+            mSecurityPreferences.storeString(TaskConstants.KEY.NAME, it.nome)
+            mSecurityPreferences.storeString(TaskConstants.KEY.EMAIL, it.email)
+        }
+    }
 
     fun insert(name: String, email: String, password: String) {
 

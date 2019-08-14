@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import com.teste.task.constants.DataBaseConstants.*
+import com.teste.task.entities.UserEntity
 
 class UserRepository private constructor(context: Context) {
 
@@ -33,6 +34,49 @@ class UserRepository private constructor(context: Context) {
 
         return db.insert(USER.TABLE_NAME, null, insertValues).toInt()
     }
+
+    fun getLogin(email: String, password: String): UserEntity? {
+
+        var userEntity: UserEntity? = null
+
+        try {
+            val cursor: Cursor
+            val db = mTaskDataBaseHelper.readableDatabase
+
+            val projection = arrayOf(
+                USER.COLUMNS.ID,
+                USER.COLUMNS.NAME,
+                USER.COLUMNS.EMAIL,
+                USER.COLUMNS.PASSWORD
+            )
+
+            val selection = "${USER.COLUMNS.EMAIL} = ? AND ${USER.COLUMNS.PASSWORD} = ?"
+            val selectionArgs = arrayOf(email, password)
+
+            cursor = db.query(
+                USER.TABLE_NAME, projection, selection, selectionArgs, null, null, null
+            )
+
+            if (cursor.count > 0) {
+                cursor.moveToFirst()
+
+                val userId = cursor.getInt(cursor.getColumnIndex(USER.COLUMNS.ID))
+                val userName = cursor.getString(cursor.getColumnIndex(USER.COLUMNS.NAME))
+                val userEmail = cursor.getString(cursor.getColumnIndex(USER.COLUMNS.EMAIL))
+
+                // Preencher a entidade usuário
+                userEntity = UserEntity(userId, userName, userEmail)
+            }
+
+            cursor.close()
+
+        } catch (e: Exception) {
+            return userEntity
+        }
+
+        return userEntity
+    }
+
 
     fun isEmailExistente(email: String): Boolean {
 
