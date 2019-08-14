@@ -11,6 +11,7 @@ class UserRepository private constructor(context: Context) {
 
     // SINGLETON
     companion object {
+
         private var INSTANCE: UserRepository? = null
 
         fun getInstance(context: Context): UserRepository {
@@ -22,6 +23,7 @@ class UserRepository private constructor(context: Context) {
     }
 
     fun insert(name: String, email: String, password: String): Int {
+
         val db = mTaskDataBaseHelper.writableDatabase
 
         val insertValues = ContentValues()
@@ -34,19 +36,28 @@ class UserRepository private constructor(context: Context) {
 
     fun isEmailExistente(email: String): Boolean {
 
+        val retorno: Boolean
+
         try {
+            val cursor: Cursor
             val db = mTaskDataBaseHelper.readableDatabase
 
             val projection = arrayOf(USER.COLUMNS.ID)
             val selection = "${USER.COLUMNS.EMAIL} = ?"
             val selectionArgs = arrayOf(email)
 
-            return db.query(
+            cursor = db.query(
                 USER.TABLE_NAME, projection, selection, selectionArgs, null, null, null
-            ).count > 0
+            )
+
+            retorno = cursor.count > 0
+
+            cursor.close()
 
         } catch (e: Exception) {
             throw e
         }
+
+        return retorno
     }
 }
