@@ -24,7 +24,7 @@ class PriorityRepository private constructor(context: Context) {
 
     fun getList(): MutableList<PriorityEntity> {
 
-        var list = mutableListOf<PriorityEntity>()
+        val list = mutableListOf<PriorityEntity>()
 
         try {
             val cursor: Cursor
@@ -35,11 +35,12 @@ class PriorityRepository private constructor(context: Context) {
             if (cursor.count > 0) {
                 while (cursor.moveToNext()) {
 
-                    val id = cursor.getInt(cursor.getColumnIndex("${PRIORITY.COLUMNS.ID}"))
-                    val description = cursor.getString(cursor.getColumnIndex("${PRIORITY.COLUMNS.DESCRIPTION}"))
+                    val id = cursor.getInt(cursor.getColumnIndex(PRIORITY.COLUMNS.ID))
+                    val description = cursor.getString(cursor.getColumnIndex(PRIORITY.COLUMNS.DESCRIPTION))
 
                     list.add(PriorityEntity(id, description))
                 }
+                cursor.close()
             }
         } catch (e: Exception) {
             return list
