@@ -27,4 +27,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="descricao">Descrição</string>
     <string name="completa">Completa</string>
+    <string name="tarefa_salva_sucesso">Tarefa salva com sucesso.</string>
 </resources>

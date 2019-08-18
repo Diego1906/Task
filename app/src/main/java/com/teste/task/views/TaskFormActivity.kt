@@ -3,6 +3,7 @@ package com.teste.task.views
 import android.app.DatePickerDialog
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
@@ -97,8 +98,14 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
 
             mTaskBusiness.insert(TaskEntity(0, userId, priorityId, description, complete, duedate))
 
+            messageShow(getString(R.string.tarefa_salva_sucesso))
+
         } catch (e: Exception) {
             Toast.makeText(this, getString(R.string.erro_inesperado), Toast.LENGTH_LONG).show()
         }
+    }
+
+    fun messageShow(message: String) {
+        Snackbar.make(taskFormLayout, message, Snackbar.LENGTH_LONG).show()
     }
 }
