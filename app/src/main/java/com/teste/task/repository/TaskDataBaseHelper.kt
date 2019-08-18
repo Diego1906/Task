@@ -14,6 +14,7 @@ class TaskDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_
 
     // SQLite
     // Tipos suportados: INTEGER, REAL, TEXT e BLOB
+
     private val mCreateTableUser =
         """CREATE TABLE ${USER.TABLE_NAME} ( 
                 ${USER.COLUMNS.ID} INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -64,5 +65,7 @@ class TaskDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_
         sqlLite.execSQL(mCreateTableUser)
         sqlLite.execSQL(mCreateTablePriority)
         sqlLite.execSQL(mCreateTableTask)
+
+        sqlLite.execSQL(mInsertPriorities)
     }
 }
