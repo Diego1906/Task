@@ -23,8 +23,6 @@ class TaskRepository private constructor(context: Context) {
         }
     }
 
-    //  update e delete(CRUD)
-
     fun get(id: Int): TaskEntity? {
 
         var taskEntity: TaskEntity? = null
