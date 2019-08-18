@@ -4,14 +4,20 @@ import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 
 import com.teste.task.R
+import com.teste.task.adapter.TaskListAdapter
 import com.teste.task.util.extensions.starNewActivity
 
 class TaskListFragment : Fragment(), View.OnClickListener {
+
+    private lateinit var mRecyclerTaskList: RecyclerView
 
     companion object {
 
@@ -40,6 +46,22 @@ class TaskListFragment : Fragment(), View.OnClickListener {
         val rootView = inflater.inflate(R.layout.fragment_task_list, container, false)
 
         rootView.findViewById<FloatingActionButton>(R.id.floatAddTask).setOnClickListener(this)
+
+        // Passos para RecyclerView funcionar
+        // 1 - Obter o elemento
+        // 2 - Definir um adapter com os itens de listagem
+        // 3 - Definir um layout
+
+        // Passo 1
+        mRecyclerTaskList = rootView.findViewById<RecyclerView>(R.id.recyclerTaskList)
+
+        // Passo 2
+        mRecyclerTaskList.apply {
+            adapter = TaskListAdapter()
+        }
+
+        // Passo 3
+        mRecyclerTaskList.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
 
         return rootView
     }
