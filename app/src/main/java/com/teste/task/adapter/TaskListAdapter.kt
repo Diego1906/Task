@@ -4,9 +4,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.teste.task.R
+import com.teste.task.entities.TaskEntity
 import com.teste.task.viewHolder.TaskViewHolder
 
-class TaskListAdapter : RecyclerView.Adapter<TaskViewHolder>() {
+class TaskListAdapter(val taskList: List<TaskEntity>) : RecyclerView.Adapter<TaskViewHolder>() {
 
     // Criação do Layout na memória
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
@@ -16,12 +17,14 @@ class TaskListAdapter : RecyclerView.Adapter<TaskViewHolder>() {
         return TaskViewHolder(view)
     }
 
-    // Retorna a quantidade de itens do layout
-    override fun getItemCount(): Int {
-        return 0
+    // Popula os itens do layout com os dados todas. Essa função é chamada todas as vezes que uma linha for criada.
+    override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
+        val task = taskList[position]
+        holder.bindData(task)
     }
 
-    // Popula os itens do layout com os dados
-    override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
+    // Retorna a quantidade de itens do layout
+    override fun getItemCount(): Int {
+        return taskList.count()
     }
 }
