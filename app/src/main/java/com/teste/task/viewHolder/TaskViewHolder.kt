@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.teste.task.R
 import com.teste.task.entities.TaskEntity
+import com.teste.task.repository.PriorityCacheConstants
 
 class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -16,7 +17,7 @@ class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bindData(taskEntity: TaskEntity) {
         mTextDescription.text = taskEntity.description
-        mTextPriority.text = taskEntity.priorityId.toString()
+        mTextPriority.text = PriorityCacheConstants.getPriorityDescription(taskEntity.priorityId)
         mTextDueDate.text = taskEntity.duedate
 
         var resId: Int = 0
