@@ -14,8 +14,6 @@ import android.widget.LinearLayout
 import com.teste.task.R
 import com.teste.task.adapter.TaskListAdapter
 import com.teste.task.business.TaskBusiness
-import com.teste.task.constants.DataBaseConstants
-import com.teste.task.util.SecurityPreferences
 import com.teste.task.util.extensions.starNewActivity
 
 class TaskListFragment : Fragment(), View.OnClickListener {
@@ -23,7 +21,6 @@ class TaskListFragment : Fragment(), View.OnClickListener {
     private lateinit var mContext: Context
     private lateinit var mRecyclerTaskList: RecyclerView
     private lateinit var mTaskBusiness: TaskBusiness
-    private lateinit var mSecurityPreferences: SecurityPreferences
 
     companion object {
 
@@ -53,7 +50,6 @@ class TaskListFragment : Fragment(), View.OnClickListener {
 
         mContext = rootView.context
         mTaskBusiness = TaskBusiness(mContext)
-        mSecurityPreferences = SecurityPreferences(mContext)
 
         // Passos para RecyclerView funcionar
         // 1 - Obter o elemento
@@ -64,15 +60,8 @@ class TaskListFragment : Fragment(), View.OnClickListener {
         mRecyclerTaskList = rootView.findViewById<RecyclerView>(R.id.recyclerTaskList)
 
         // Passo 2
-        val userId = mSecurityPreferences.getStoredString(DataBaseConstants.TASK.COLUMNS.USER_ID).toInt()
-        val taskList = mTaskBusiness.getList(userId)
-
-        for (i in 0..50){
-            taskList.add(taskList[0].copy(description = "Descrição $i"))
-        }
-
         mRecyclerTaskList.apply {
-            adapter = TaskListAdapter(taskList)
+            adapter = TaskListAdapter(mutableListOf())
         }
 
         // Passo 3
@@ -86,6 +75,18 @@ class TaskListFragment : Fragment(), View.OnClickListener {
             R.id.floatAddTask -> {
                 this.starNewActivity(TaskFormActivity())
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        loadTasks()
+    }
+
+    private fun loadTasks() {
+        mRecyclerTaskList.apply {
+            adapter = TaskListAdapter(mTaskBusiness.getList())
         }
     }
 }

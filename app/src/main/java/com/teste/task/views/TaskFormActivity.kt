@@ -100,6 +100,8 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
 
             messageShow(getString(R.string.tarefa_salva_sucesso))
 
+            finish()
+
         } catch (e: Exception) {
             Toast.makeText(this, getString(R.string.erro_inesperado), Toast.LENGTH_LONG).show()
         }
