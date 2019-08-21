@@ -14,6 +14,7 @@ import android.widget.LinearLayout
 import com.teste.task.R
 import com.teste.task.adapter.TaskListAdapter
 import com.teste.task.business.TaskBusiness
+import com.teste.task.constants.TaskConstants
 import com.teste.task.util.extensions.starNewActivity
 
 class TaskListFragment : Fragment(), View.OnClickListener {
@@ -21,25 +22,23 @@ class TaskListFragment : Fragment(), View.OnClickListener {
     private lateinit var mContext: Context
     private lateinit var mRecyclerTaskList: RecyclerView
     private lateinit var mTaskBusiness: TaskBusiness
+    private var mTaskFilter: Int = 0
 
     companion object {
 
         @JvmStatic
-        fun newInstance() =
-            TaskListFragment().apply {
-                /*arguments = Bundle().apply {
-                    putString(ARG_PARAM1, mParam1)
-                    putString(ARG_PARAM2, mParam2)
-                }*/
+        fun newInstance(taskFilter: Int) = TaskListFragment().apply {
+            arguments = Bundle().apply {
+                putInt(TaskConstants.TASK_FILTER.KEY, taskFilter)
             }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        /* arguments?.let {
-             mParam1 = it.getString(ARG_PARAM1)
-             mParam2 = it.getString(ARG_PARAM2)
-         }*/
+        arguments?.let {
+            mTaskFilter = it.getInt(TaskConstants.TASK_FILTER.KEY)
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -86,7 +85,7 @@ class TaskListFragment : Fragment(), View.OnClickListener {
 
     private fun loadTasks() {
         mRecyclerTaskList.apply {
-            adapter = TaskListAdapter(mTaskBusiness.getList())
+            adapter = TaskListAdapter(mTaskBusiness.getList(mTaskFilter))
         }
     }
 }

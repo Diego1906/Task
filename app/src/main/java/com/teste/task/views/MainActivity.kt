@@ -1,8 +1,6 @@
 package com.teste.task.views
 
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
-import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.MenuItem
@@ -66,10 +64,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_done -> {
-                fragment = TaskListFragment.newInstance()
+                fragment = TaskListFragment.newInstance(TaskConstants.TASK_FILTER.COMPLETE)
             }
             R.id.nav_todo -> {
-                fragment = TaskListFragment.newInstance()
+                fragment = TaskListFragment.newInstance(TaskConstants.TASK_FILTER.TODO)
             }
             R.id.nav_logout -> {
                 handleLogout()
@@ -90,7 +88,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun startDefaultFragment() {
-        val fragment: Fragment = TaskListFragment.newInstance()
+        val fragment: Fragment = TaskListFragment.newInstance(TaskConstants.TASK_FILTER.COMPLETE)
         supportFragmentManager.beginTransaction().replace(R.id.frameContent, fragment).commit()
     }
 

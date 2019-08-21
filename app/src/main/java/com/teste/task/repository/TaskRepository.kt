@@ -65,7 +65,7 @@ class TaskRepository private constructor(context: Context) {
         return taskEntity
     }
 
-    fun getList(userId: Int): MutableList<TaskEntity> {
+    fun getList(userId: Int, taskFilter: Int): MutableList<TaskEntity> {
 
         val list = mutableListOf<TaskEntity>()
 
@@ -74,7 +74,11 @@ class TaskRepository private constructor(context: Context) {
             val db = mTaskDataBaseHelper.readableDatabase
 
             cursor = db.rawQuery(
-                "SELECT * FROM ${TASK.TABLE_NAME} WHERE ${TASK.COLUMNS.USER_ID} = $userId", null
+                """SELECT *
+                        FROM ${TASK.TABLE_NAME}
+                        WHERE ${TASK.COLUMNS.USER_ID} = $userId
+                        AND ${TASK.COLUMNS.COMPLETE} = $taskFilter""",
+                null
             )
 
             if (cursor.count > 0) {

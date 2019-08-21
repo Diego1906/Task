@@ -78,13 +78,19 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
 
     private fun loadPriorities() {
         mListPrioritiesEntity = mPriorityBusiness.getList()
-        mListPrioritiesId = mListPrioritiesEntity.map { it.id }.toMutableList()
 
-        val lstPrioritiesDescription = mListPrioritiesEntity.map { it.description }
+        mListPrioritiesId = mListPrioritiesEntity.map {
+            it.id
+        }.toMutableList()
 
-        val adapter =
-            ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, lstPrioritiesDescription)
-        spinnerPriority.adapter = adapter
+        val lstPrioritiesDescription = mListPrioritiesEntity.map {
+            it.description
+        }
+
+        spinnerPriority.apply {
+            adapter =
+                ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, lstPrioritiesDescription)
+        }
     }
 
     private fun handleSave() {
@@ -97,8 +103,6 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
             val userId = mSecurityPreferences.getStoredString(TaskConstants.KEY.USER_ID).toInt()
 
             mTaskBusiness.insert(TaskEntity(0, userId, priorityId, description, complete, duedate))
-
-            messageShow(getString(R.string.tarefa_salva_sucesso))
 
             finish()
 
