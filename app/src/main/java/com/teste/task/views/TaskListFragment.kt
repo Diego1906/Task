@@ -81,7 +81,7 @@ class TaskListFragment : Fragment(), View.OnClickListener {
 
         // Passo 2
         mRecyclerTaskList.apply {
-            adapter = TaskListAdapter(mutableListOf())
+            adapter = TaskListAdapter(mutableListOf(), mListener)
         }
 
         // Passo 3
@@ -107,7 +107,7 @@ class TaskListFragment : Fragment(), View.OnClickListener {
 
     private fun loadTasks() {
         mRecyclerTaskList.apply {
-            adapter = TaskListAdapter(mTaskBusiness.getList(mTaskFilter))
+            adapter = TaskListAdapter(mTaskBusiness.getList(mTaskFilter), mListener)
         }
     }
 }

@@ -19,7 +19,8 @@ import kotlinx.android.synthetic.main.activity_task_form.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDialog.OnDateSetListener {
+class TaskFormActivity : AppCompatActivity(), View.OnClickListener,
+    DatePickerDialog.OnDateSetListener {
 
     private var mListPrioritiesEntity: MutableList<PriorityEntity> = mutableListOf()
     private var mListPrioritiesId: MutableList<Int> = mutableListOf()
@@ -29,6 +30,7 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
     private lateinit var mSecurityPreferences: SecurityPreferences
 
     private val mSimpleDateFormat = SimpleDateFormat("dd/MM/yyyy")
+    private var mTaskId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,8 +41,8 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
         mSecurityPreferences = SecurityPreferences(this)
 
         setListeners()
-
         loadPriorities()
+        loadDataFromActivity()
     }
 
     override fun onClick(view: View) {
@@ -89,8 +91,37 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
 
         spinnerPriority.apply {
             adapter =
-                ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, lstPrioritiesDescription)
+                ArrayAdapter<String>(
+                    context,
+                    android.R.layout.simple_spinner_dropdown_item,
+                    lstPrioritiesDescription
+                )
         }
+    }
+
+    private fun loadDataFromActivity() {
+        intent.extras?.let {
+            mTaskId = it.getInt(TaskConstants.BUNDLE.TASK_ID)
+
+            val task = mTaskBusiness.get(mTaskId)
+            task?.let {
+                editDescription.setText(it.description)
+                spinnerPriority.setSelection(getIndex(it.priorityId))
+                checkComplete.isChecked = it.complete
+                buttonDate.text = it.duedate
+            }
+        }
+    }
+
+    private fun getIndex(id: Int): Int {
+        var index: Int = 0
+        for (i in 0..mListPrioritiesEntity.size) {
+            if (mListPrioritiesEntity[i].id == id) {
+                index = i
+                break
+            }
+        }
+        return index
     }
 
     private fun handleSave() {

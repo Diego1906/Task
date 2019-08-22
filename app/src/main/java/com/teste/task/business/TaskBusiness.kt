@@ -11,8 +11,11 @@ class TaskBusiness(val context: Context) {
     private val mTaskRepository: TaskRepository = TaskRepository.getInstance(context)
     private val mSecurityPreferences: SecurityPreferences = SecurityPreferences(context)
 
+    fun get(id: Int) = mTaskRepository.get(id)
+
     fun getList(taskFilter: Int): MutableList<TaskEntity> {
-        val userId = mSecurityPreferences.getStoredString(DataBaseConstants.TASK.COLUMNS.USER_ID).toInt()
+        val userId =
+            mSecurityPreferences.getStoredString(DataBaseConstants.TASK.COLUMNS.USER_ID).toInt()
 
         return mTaskRepository.getList(userId, taskFilter)
     }

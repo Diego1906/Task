@@ -4,17 +4,21 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.teste.task.R
+import com.teste.task.entities.OnTaskListFragmentInteractionListener
 import com.teste.task.entities.TaskEntity
 import com.teste.task.viewHolder.TaskViewHolder
 
-class TaskListAdapter(val taskList: List<TaskEntity>) : RecyclerView.Adapter<TaskViewHolder>() {
+class TaskListAdapter(
+    val taskList: List<TaskEntity>,
+    val listener: OnTaskListFragmentInteractionListener
+) : RecyclerView.Adapter<TaskViewHolder>() {
 
     // Criação do Layout na memória
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.row_task_list, parent, false)
 
-        return TaskViewHolder(view)
+        return TaskViewHolder(view, listener)
     }
 
     // Popula os itens do layout com os dados todas. Essa função é chamada todas as vezes que uma linha for criada.
