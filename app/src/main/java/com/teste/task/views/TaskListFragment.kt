@@ -1,6 +1,7 @@
 package com.teste.task.views
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
@@ -15,6 +16,7 @@ import com.teste.task.R
 import com.teste.task.adapter.TaskListAdapter
 import com.teste.task.business.TaskBusiness
 import com.teste.task.constants.TaskConstants
+import com.teste.task.entities.OnTaskListFragmentInteractionListener
 import com.teste.task.util.extensions.starNewActivity
 
 class TaskListFragment : Fragment(), View.OnClickListener {
@@ -23,6 +25,7 @@ class TaskListFragment : Fragment(), View.OnClickListener {
     private lateinit var mRecyclerTaskList: RecyclerView
     private lateinit var mTaskBusiness: TaskBusiness
     private var mTaskFilter: Int = 0
+    private lateinit var mListener: OnTaskListFragmentInteractionListener
 
     companion object {
 
@@ -41,7 +44,11 @@ class TaskListFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_task_list, container, false)
 
@@ -49,6 +56,20 @@ class TaskListFragment : Fragment(), View.OnClickListener {
 
         mContext = rootView.context
         mTaskBusiness = TaskBusiness(mContext)
+
+        // Classe anônima
+        mListener = object : OnTaskListFragmentInteractionListener {
+            override fun onListClick(taskId: Int) {
+
+                val bundle: Bundle = Bundle()
+                bundle.putInt(TaskConstants.BUNDLE.TASK_ID, taskId)
+
+                val intent: Intent = Intent(mContext, TaskFormActivity::class.java)
+                intent.putExtras(bundle)
+
+                startActivity(intent)
+            }
+        }
 
         // Passos para RecyclerView funcionar
         // 1 - Obter o elemento
@@ -64,7 +85,8 @@ class TaskListFragment : Fragment(), View.OnClickListener {
         }
 
         // Passo 3
-        mRecyclerTaskList.layoutManager = LinearLayoutManager(mContext, LinearLayout.VERTICAL, false)
+        mRecyclerTaskList.layoutManager =
+            LinearLayoutManager(mContext, LinearLayout.VERTICAL, false)
 
         return rootView
     }
