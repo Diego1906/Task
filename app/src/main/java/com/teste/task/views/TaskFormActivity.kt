@@ -3,7 +3,6 @@ package com.teste.task.views
 import android.app.DatePickerDialog
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.DatePicker

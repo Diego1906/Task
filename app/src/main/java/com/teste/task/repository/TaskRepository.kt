@@ -146,13 +146,13 @@ class TaskRepository private constructor(context: Context) {
         }
     }
 
-    fun delete(id: Int) {
+    fun delete(taskId: Int) {
 
         try {
             val db = mTaskDataBaseHelper.writableDatabase
 
             val where = "${TASK.COLUMNS.ID} = ?"
-            val whereArgs = arrayOf(id.toString())
+            val whereArgs = arrayOf(taskId.toString())
 
             db.delete(TASK.TABLE_NAME, where, whereArgs)
 

@@ -30,4 +30,5 @@
     <string name="tarefa_salva_sucesso">Tarefa salva com sucesso.</string>
     <string name="tarefa_incluida_com_sucesso">Tarefa incluída com sucesso.</string>
     <string name="tarefa_atualizada_com_sucesso">Tarefa atualizada com sucesso.</string>
+    <string name="tarefa_removida_sucesso">Tarefa removida com sucesso.</string>
 </resources>

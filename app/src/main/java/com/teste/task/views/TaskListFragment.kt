@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Toast
 
 import com.teste.task.R
 import com.teste.task.adapter.TaskListAdapter
@@ -49,44 +50,57 @@ class TaskListFragment : Fragment(), View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_task_list, container, false)
 
-        rootView.findViewById<FloatingActionButton>(R.id.floatAddTask).setOnClickListener(this)
+        try {
 
-        mContext = rootView.context
-        mTaskBusiness = TaskBusiness(mContext)
+            rootView.findViewById<FloatingActionButton>(R.id.floatAddTask).setOnClickListener(this)
 
-        // Classe anônima
-        mListener = object : OnTaskListFragmentInteractionListener {
-            override fun onListClick(taskId: Int) {
+            mContext = rootView.context
+            mTaskBusiness = TaskBusiness(mContext)
 
-                val bundle: Bundle = Bundle()
-                bundle.putInt(TaskConstants.BUNDLE.TASK_ID, taskId)
+            // Classe anônima
+            mListener = object : OnTaskListFragmentInteractionListener {
+                override fun onListClick(taskId: Int) {
+                    val bundle: Bundle = Bundle()
+                    bundle.putInt(TaskConstants.BUNDLE.TASK_ID, taskId)
 
-                val intent: Intent = Intent(mContext, TaskFormActivity::class.java)
-                intent.putExtras(bundle)
+                    val intent: Intent = Intent(mContext, TaskFormActivity::class.java)
+                    intent.putExtras(bundle)
 
-                startActivity(intent)
+                    startActivity(intent)
+                }
+
+                override fun onDeleteClick(taskId: Int) {
+                    mTaskBusiness.delete(taskId)
+                    loadTasks()
+                    messageShow(getString(R.string.tarefa_removida_sucesso))
+                }
             }
+
+            // Passos para RecyclerView funcionar
+            // 1 - Obter o elemento
+            // 2 - Definir um adapter com os itens de listagem
+            // 3 - Definir um layout
+
+            // Passo 1
+            mRecyclerTaskList = rootView.findViewById<RecyclerView>(R.id.recyclerTaskList)
+
+            // Passo 2
+            mRecyclerTaskList.apply {
+                adapter = TaskListAdapter(mutableListOf(), mContext, mListener)
+            }
+
+            // Passo 3
+            mRecyclerTaskList.layoutManager =
+                LinearLayoutManager(mContext, LinearLayout.VERTICAL, false)
+
+
+        } catch (e: Exception) {
+            messageShow(e.message.toString())
         }
-
-        // Passos para RecyclerView funcionar
-        // 1 - Obter o elemento
-        // 2 - Definir um adapter com os itens de listagem
-        // 3 - Definir um layout
-
-        // Passo 1
-        mRecyclerTaskList = rootView.findViewById<RecyclerView>(R.id.recyclerTaskList)
-
-        // Passo 2
-        mRecyclerTaskList.apply {
-            adapter = TaskListAdapter(mutableListOf(), mListener)
-        }
-
-        // Passo 3
-        mRecyclerTaskList.layoutManager =
-            LinearLayoutManager(mContext, LinearLayout.VERTICAL, false)
 
         return rootView
     }
@@ -107,7 +121,11 @@ class TaskListFragment : Fragment(), View.OnClickListener {
 
     private fun loadTasks() {
         mRecyclerTaskList.apply {
-            adapter = TaskListAdapter(mTaskBusiness.getList(mTaskFilter), mListener)
+            adapter = TaskListAdapter(mTaskBusiness.getList(mTaskFilter), mContext, mListener)
         }
+    }
+
+    private fun messageShow(message: String) {
+        Toast.makeText(mContext, message, android.widget.Toast.LENGTH_LONG).show()
     }
 }

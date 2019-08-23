@@ -1,5 +1,6 @@
 package com.teste.task.adapter
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import com.teste.task.viewHolder.TaskViewHolder
 
 class TaskListAdapter(
     val taskList: List<TaskEntity>,
+    val context: Context,
     val listener: OnTaskListFragmentInteractionListener
 ) : RecyclerView.Adapter<TaskViewHolder>() {
 
@@ -18,7 +20,7 @@ class TaskListAdapter(
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.row_task_list, parent, false)
 
-        return TaskViewHolder(view, listener)
+        return TaskViewHolder(view, context, listener)
     }
 
     // Popula os itens do layout com os dados todas. Essa função é chamada todas as vezes que uma linha for criada.
