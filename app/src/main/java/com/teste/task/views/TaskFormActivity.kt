@@ -133,16 +133,27 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener,
             val duedate = buttonDate.text.toString()
             val userId = mSecurityPreferences.getStoredString(TaskConstants.KEY.USER_ID).toInt()
 
-            mTaskBusiness.insert(TaskEntity(0, userId, priorityId, description, complete, duedate))
+            val taskEntity = TaskEntity(mTaskId, userId, priorityId, description, complete, duedate)
+
+            when (mTaskId) {
+                0 -> {
+                    mTaskBusiness.insert(taskEntity)
+                    messageShow(getString(R.string.tarefa_incluida_com_sucesso))
+                }
+                else -> {
+                    mTaskBusiness.update(taskEntity)
+                    messageShow(getString(R.string.tarefa_atualizada_com_sucesso))
+                }
+            }
 
             finish()
 
         } catch (e: Exception) {
-            Toast.makeText(this, getString(R.string.erro_inesperado), Toast.LENGTH_LONG).show()
+            messageShow(getString(R.string.erro_inesperado))
         }
     }
 
     fun messageShow(message: String) {
-        Snackbar.make(taskFormLayout, message, Snackbar.LENGTH_LONG).show()
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }
