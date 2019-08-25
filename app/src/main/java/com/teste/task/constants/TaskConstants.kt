@@ -4,8 +4,8 @@ class TaskConstants {
 
     object KEY {
         val USER_ID = "userId"
-        val EMAIL = "email"
-        val NAME = "name"
+        val USER_EMAIL = "email"
+        val USER_NAME = "name"
     }
 
     object TASK_FILTER {

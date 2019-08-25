@@ -42,8 +42,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun verifyLoggedUser() {
         val id = mSecurityPreferences.getStoredString(TaskConstants.KEY.USER_ID)
-        val nome = mSecurityPreferences.getStoredString(TaskConstants.KEY.NAME)
-        val email = mSecurityPreferences.getStoredString(TaskConstants.KEY.EMAIL)
+        val nome = mSecurityPreferences.getStoredString(TaskConstants.KEY.USER_NAME)
+        val email = mSecurityPreferences.getStoredString(TaskConstants.KEY.USER_EMAIL)
 
         // Usuário Logado
         if (id.isNotEmpty() && nome.isNotEmpty() && email.isNotEmpty()) {

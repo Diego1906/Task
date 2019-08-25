@@ -22,8 +22,8 @@ class UserBusiness(val context: Context) {
         user?.let {
             // Salvar dados do usuário no sharedPreferences
             mSecurityPreferences.storeString(TaskConstants.KEY.USER_ID, it.id.toString())
-            mSecurityPreferences.storeString(TaskConstants.KEY.NAME, it.nome)
-            mSecurityPreferences.storeString(TaskConstants.KEY.EMAIL, it.email)
+            mSecurityPreferences.storeString(TaskConstants.KEY.USER_NAME, it.nome)
+            mSecurityPreferences.storeString(TaskConstants.KEY.USER_EMAIL, it.email)
 
             retorno = true
         }
@@ -46,8 +46,8 @@ class UserBusiness(val context: Context) {
 
             // Salvar dados do usuário no sharedPreferences
             mSecurityPreferences.storeString(TaskConstants.KEY.USER_ID, userId.toString())
-            mSecurityPreferences.storeString(TaskConstants.KEY.NAME, name)
-            mSecurityPreferences.storeString(TaskConstants.KEY.EMAIL, email)
+            mSecurityPreferences.storeString(TaskConstants.KEY.USER_NAME, name)
+            mSecurityPreferences.storeString(TaskConstants.KEY.USER_EMAIL, email)
 
         } catch (e: Exception) {
             throw e
