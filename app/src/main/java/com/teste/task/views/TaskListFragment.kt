@@ -63,6 +63,7 @@ class TaskListFragment : Fragment(), View.OnClickListener {
 
             // Classe anônima
             mListener = object : OnTaskListFragmentInteractionListener {
+
                 override fun onListClick(taskId: Int) {
                     val bundle: Bundle = Bundle()
                     bundle.putInt(TaskConstants.BUNDLE.TASK_ID, taskId)
@@ -77,6 +78,16 @@ class TaskListFragment : Fragment(), View.OnClickListener {
                     mTaskBusiness.delete(taskId)
                     loadTasks()
                     messageShow(getString(R.string.tarefa_removida_sucesso))
+                }
+
+                override fun onUnCompleteClick(taskId: Int) {
+                    mTaskBusiness.complete(taskId, false)
+                    loadTasks()
+                }
+
+                override fun onCompleteClick(taskId: Int) {
+                    mTaskBusiness.complete(taskId, true)
+                    loadTasks()
                 }
             }
 

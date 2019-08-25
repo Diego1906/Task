@@ -30,16 +30,7 @@ class TaskViewHolder(
         mTextPriority.text = PriorityCacheConstants.getPriorityDescription(taskEntity.priorityId)
         mTextDueDate.text = taskEntity.duedate
 
-        var resId: Int = 0
-        when (taskEntity.complete) {
-            true -> {
-                resId = R.drawable.ic_done
-            }
-            else -> {
-                resId = R.drawable.ic_todo
-            }
-        }
-        mImageTask.setImageResource(resId)
+        setImageTask(taskEntity)
 
         // Evento de click para edição
         mTextDescription.setOnClickListener(View.OnClickListener {
@@ -50,6 +41,27 @@ class TaskViewHolder(
             showConfirmationDialog(taskEntity)
             true
         })
+
+        mImageTask.setOnClickListener(View.OnClickListener {
+            if (taskEntity.complete) {
+                listener.onUnCompleteClick(taskEntity.id)
+            } else {
+                listener.onCompleteClick(taskEntity.id)
+            }
+        })
+    }
+
+    private fun setImageTask(taskEntity: TaskEntity) {
+        var resId: Int = 0
+        when (taskEntity.complete) {
+            true -> {
+                resId = R.drawable.ic_done
+            }
+            else -> {
+                resId = R.drawable.ic_todo
+            }
+        }
+        mImageTask.setImageResource(resId)
     }
 
     private fun showConfirmationDialog(task: TaskEntity) {

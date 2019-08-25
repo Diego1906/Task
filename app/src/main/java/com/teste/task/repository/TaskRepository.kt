@@ -87,8 +87,10 @@ class TaskRepository private constructor(context: Context) {
                     val id = cursor.getInt(cursor.getColumnIndex(TASK.COLUMNS.ID))
                     val userId = cursor.getInt(cursor.getColumnIndex(TASK.COLUMNS.USER_ID))
                     val priorityId = cursor.getInt(cursor.getColumnIndex(TASK.COLUMNS.PRIORITYID))
-                    val description = cursor.getString(cursor.getColumnIndex(TASK.COLUMNS.DESCRIPTION))
-                    val complete = (cursor.getInt(cursor.getColumnIndex(TASK.COLUMNS.COMPLETE)) == 1)
+                    val description =
+                        cursor.getString(cursor.getColumnIndex(TASK.COLUMNS.DESCRIPTION))
+                    val complete =
+                        (cursor.getInt(cursor.getColumnIndex(TASK.COLUMNS.COMPLETE)) == 1)
                     val duedate = cursor.getString(cursor.getColumnIndex(TASK.COLUMNS.DUEDATE))
 
                     list.add(TaskEntity(id, userId, priorityId, description, complete, duedate))
@@ -155,6 +157,28 @@ class TaskRepository private constructor(context: Context) {
             val whereArgs = arrayOf(taskId.toString())
 
             db.delete(TASK.TABLE_NAME, where, whereArgs)
+
+        } catch (e: Exception) {
+            throw e
+        }
+    }
+
+    fun complete(taskId: Int, complete: Boolean) {
+        update(taskId, complete)
+    }
+
+    fun update(taskId: Int, complete: Boolean) {
+        try {
+            val db = mTaskDataBaseHelper.writableDatabase
+
+            val updateValues = ContentValues()
+
+            updateValues.put(TASK.COLUMNS.COMPLETE, complete)
+
+            val where = "${TASK.COLUMNS.ID} = ?"
+            val whereArgs = arrayOf(taskId.toString())
+
+            db.update(TASK.TABLE_NAME, updateValues, where, whereArgs)
 
         } catch (e: Exception) {
             throw e
