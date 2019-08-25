@@ -77,6 +77,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.nav_logout -> {
                 handleLogout()
+                return false
             }
         }
 
@@ -141,7 +142,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Calendar.MONTH)]} de ${c.get(Calendar.YEAR)}."
 
         textDateDescription.text = str
-
     }
 
     private fun formatUserName() {

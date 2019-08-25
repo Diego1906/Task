@@ -108,6 +108,8 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener,
                 spinnerPriority.setSelection(getIndex(it.priorityId))
                 checkComplete.isChecked = it.complete
                 buttonDate.text = it.duedate
+
+                buttonSave.text = getString(R.string.atualizar_tarefa)
             }
         }
     }
