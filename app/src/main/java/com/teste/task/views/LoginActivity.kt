@@ -19,6 +19,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
 
         mUserBusiness = UserBusiness(this)
         mSecurityPreferences = SecurityPreferences(this)
