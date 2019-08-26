@@ -35,11 +35,15 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             R.id.buttonLogin -> {
                 handleLogin()
             }
+            R.id.textRegister -> {
+                this.startNewActivity(RegisterActivity())
+            }
         }
     }
 
     private fun setListeners() {
         buttonLogin.setOnClickListener(this)
+        textRegister.setOnClickListener(this)
     }
 
     private fun verifyLoggedUser() {
@@ -58,7 +62,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         val password = editPasswordLogin.text.toString()
 
         if (!mUserBusiness.login(email, password)) {
-            Snackbar.make(loginLayout, getString(R.string.usuario_senha_incorretos), Snackbar.LENGTH_LONG).show()
+            Snackbar.make(
+                loginLayout,
+                getString(R.string.usuario_senha_incorretos),
+                Snackbar.LENGTH_LONG
+            ).show()
             return
         }
 
