@@ -11,22 +11,25 @@
 
     <ImageView
         android:id="@+id/imageLogoTipo"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="centerInside"
         android:src="@drawable/ic_logotipo"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guidelineVertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editEmailLogin"
         style="@style/mWhiteEditText"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="8dp"
         android:drawableStart="@drawable/ic_user"
         android:drawablePadding="10dp"
         android:elevation="5dp"
@@ -35,17 +38,17 @@
         android:maxLines="1"
         android:textColorHint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageLogoTipo" />
+        app:layout_constraintStart_toStartOf="@id/guidelineVertical"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editPasswordLogin"
         style="@style/mWhiteEditText"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
         android:drawableStart="@drawable/ic_lock"
         android:drawablePadding="10dp"
         android:hint="@string/senha"
@@ -53,7 +56,7 @@
         android:maxLines="1"
         android:textColorHint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guidelineVertical"
         app:layout_constraintTop_toBottomOf="@id/editEmailLogin" />
 
     <Button
@@ -61,10 +64,12 @@
         style="@style/mDefaultButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/entrar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guidelineVertical"
         app:layout_constraintTop_toBottomOf="@id/editPasswordLogin" />
 
     <android.support.constraint.Guideline
@@ -72,37 +77,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.18" />
+        app:layout_constraintGuide_percent="0.5" />
 
     <TextView
         android:id="@+id/textView"
         style="@style/mWhiteTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
         android:hint="@string/nao_tem_uma_conta"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@id/guidelineVertical" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.82" />
+        app:layout_constraintEnd_toStartOf="@id/guidelineVertical" />
 
     <TextView
         style="@style/mWhiteTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="8dp"
         android:hint="@string/cadastre_se"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3" />
+        app:layout_constraintStart_toEndOf="@id/guidelineVertical" />
 
 </android.support.constraint.ConstraintLayout>
