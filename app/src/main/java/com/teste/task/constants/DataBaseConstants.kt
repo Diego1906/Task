@@ -28,7 +28,7 @@ class DataBaseConstants {
         object COLUMNS {
             val ID = "id"
             val USER_ID = "userId"
-            val PRIORITYID = "priorityId"
+            val PRIORITY_ID = "priorityId"
             val DESCRIPTION = "description"
             val COMPLETE = "complete"
             val DUEDATE = "duedate"

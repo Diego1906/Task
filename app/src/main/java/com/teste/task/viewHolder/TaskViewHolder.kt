@@ -3,7 +3,6 @@ package com.teste.task.viewHolder
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
@@ -52,13 +51,11 @@ class TaskViewHolder(
     }
 
     private fun setImageTask(taskEntity: TaskEntity) {
-        var resId: Int = 0
+        var resId: Int = R.drawable.ic_todo
+
         when (taskEntity.complete) {
             true -> {
                 resId = R.drawable.ic_done
-            }
-            else -> {
-                resId = R.drawable.ic_todo
             }
         }
         mImageTask.setImageResource(resId)
@@ -66,12 +63,12 @@ class TaskViewHolder(
 
     private fun showConfirmationDialog(task: TaskEntity) {
         AlertDialog.Builder(context)
-            .setTitle("Confirmação")
-            .setMessage("Deseja remover a tarefa '${task.description}' ?")
+            .setTitle(context.getString(R.string.confirmacao))
+            .setMessage(context.getString(R.string.remover_tarefa) + task.description + "?" )
             .setIcon(R.drawable.ic_delete)
-            .setNegativeButton("Cancelar", null)
+            .setNegativeButton(context.getString(R.string.cancelar), null)
             .setPositiveButton(
-                "Remover",
+                context.getString(R.string.remover),
                 DialogInterface.OnClickListener { _, _ -> listener.onDeleteClick(task.id) })
             .show()
     }

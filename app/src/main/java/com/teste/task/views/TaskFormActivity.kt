@@ -28,7 +28,7 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener,
     private lateinit var mTaskBusiness: TaskBusiness
     private lateinit var mSecurityPreferences: SecurityPreferences
 
-    private val mSimpleDateFormat = SimpleDateFormat("dd/MM/yyyy")
+    private val mSimpleDateFormat = SimpleDateFormat(getString(R.string.pattern_date))
     private var mTaskId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {

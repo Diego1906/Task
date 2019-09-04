@@ -17,7 +17,6 @@ import com.teste.task.repository.PriorityCacheConstants
 import com.teste.task.util.SecurityPreferences
 import com.teste.task.util.extensions.startNewActivity
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.row_task_list.*
 import java.util.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -113,39 +112,41 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val c = Calendar.getInstance()
 
         val days = arrayOf(
-            "Domingo"
-            , "Segunda-feira"
-            , "Terça-feira"
-            , "Quarta-feira"
-            , "Quinta-feira"
-            , "Sexta-feira"
-            , "Sábado"
+            getString(R.string.domingo)
+            , getString(R.string.segunda)
+            , getString(R.string.terca)
+            , getString(R.string.quarta)
+            , getString(R.string.quinta)
+            , getString(R.string.sexta)
+            , getString(R.string.sabado)
         )
 
         val months = arrayOf(
-            "Janeiro"
-            , "Fevereiro"
-            , "Março"
-            , "Abril"
-            , "Maio"
-            , "Junho"
-            , "Julho"
-            , "Agosto"
-            , "Setembro"
-            , "Outubro"
-            , "Novembro"
-            , "Dezembro"
+            getString(R.string.janeiro)
+            , getString(R.string.fevereiro)
+            , getString(R.string.marco)
+            , getString(R.string.abril)
+            , getString(R.string.maio)
+            , getString(R.string.junho)
+            , getString(R.string.julho)
+            , getString(R.string.agosto)
+            , getString(R.string.setembro)
+            , getString(R.string.outubro)
+            , getString(R.string.novembro)
+            , getString(R.string.dezembro)
         )
 
         val str =
             "${days[c.get(Calendar.DAY_OF_WEEK) - 1]}, ${c.get(Calendar.DAY_OF_MONTH)} de ${months[c.get(
-                Calendar.MONTH)]} de ${c.get(Calendar.YEAR)}."
+                Calendar.MONTH
+            )]} de ${c.get(Calendar.YEAR)}."
 
         textDateDescription.text = str
     }
 
     private fun formatUserName() {
-        val str = "Olá, ${mSecurityPreferences.getStoredString(TaskConstants.KEY.USER_NAME)}"
+        val str =
+            getString(R.string.ola) + mSecurityPreferences.getStoredString(TaskConstants.KEY.USER_NAME)
         textHello.text = str
 
         val navigationView: NavigationView = findViewById(R.id.nav_view) as NavigationView

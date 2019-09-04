@@ -33,7 +33,7 @@ class TaskRepository private constructor(context: Context) {
             val columns = arrayOf(
                 TASK.COLUMNS.ID,
                 TASK.COLUMNS.USER_ID,
-                TASK.COLUMNS.PRIORITYID,
+                TASK.COLUMNS.PRIORITY_ID,
                 TASK.COLUMNS.DESCRIPTION,
                 TASK.COLUMNS.DUEDATE,
                 TASK.COLUMNS.COMPLETE
@@ -48,7 +48,7 @@ class TaskRepository private constructor(context: Context) {
 
                 val taskId = cursor.getInt(cursor.getColumnIndex(TASK.COLUMNS.ID))
                 val userId = cursor.getInt(cursor.getColumnIndex(TASK.COLUMNS.USER_ID))
-                val priorityId = cursor.getInt(cursor.getColumnIndex(TASK.COLUMNS.PRIORITYID))
+                val priorityId = cursor.getInt(cursor.getColumnIndex(TASK.COLUMNS.PRIORITY_ID))
                 val description = cursor.getString(cursor.getColumnIndex(TASK.COLUMNS.DESCRIPTION))
                 val duedate = cursor.getString(cursor.getColumnIndex(TASK.COLUMNS.DUEDATE))
                 val complete = (cursor.getInt(cursor.getColumnIndex(TASK.COLUMNS.COMPLETE)) == 1)
@@ -86,7 +86,7 @@ class TaskRepository private constructor(context: Context) {
 
                     val id = cursor.getInt(cursor.getColumnIndex(TASK.COLUMNS.ID))
                     val userId = cursor.getInt(cursor.getColumnIndex(TASK.COLUMNS.USER_ID))
-                    val priorityId = cursor.getInt(cursor.getColumnIndex(TASK.COLUMNS.PRIORITYID))
+                    val priorityId = cursor.getInt(cursor.getColumnIndex(TASK.COLUMNS.PRIORITY_ID))
                     val description =
                         cursor.getString(cursor.getColumnIndex(TASK.COLUMNS.DESCRIPTION))
                     val complete =
@@ -113,7 +113,7 @@ class TaskRepository private constructor(context: Context) {
 
             val insertValues = ContentValues()
             insertValues.put(TASK.COLUMNS.USER_ID, taskEntity.userId)
-            insertValues.put(TASK.COLUMNS.PRIORITYID, taskEntity.priorityId)
+            insertValues.put(TASK.COLUMNS.PRIORITY_ID, taskEntity.priorityId)
             insertValues.put(TASK.COLUMNS.DESCRIPTION, taskEntity.description)
             insertValues.put(TASK.COLUMNS.DUEDATE, taskEntity.duedate)
             insertValues.put(TASK.COLUMNS.COMPLETE, complete)
@@ -133,7 +133,7 @@ class TaskRepository private constructor(context: Context) {
 
             val updateValues = ContentValues()
             updateValues.put(TASK.COLUMNS.USER_ID, taskEntity.userId)
-            updateValues.put(TASK.COLUMNS.PRIORITYID, taskEntity.priorityId)
+            updateValues.put(TASK.COLUMNS.PRIORITY_ID, taskEntity.priorityId)
             updateValues.put(TASK.COLUMNS.DESCRIPTION, taskEntity.description)
             updateValues.put(TASK.COLUMNS.DUEDATE, taskEntity.duedate)
             updateValues.put(TASK.COLUMNS.COMPLETE, complete)

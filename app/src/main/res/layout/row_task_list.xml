@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="15dp"
-    android:paddingTop="20dp"
-    android:paddingEnd="15dp">
+    android:paddingStart="@dimen/dimen15dp"
+    android:paddingTop="@dimen/dimen20dp"
+    android:paddingEnd="@dimen/dimen15dp">
 
     <ImageView
         android:id="@+id/imageTask"
@@ -17,10 +17,10 @@
 
     <TextView
         android:id="@+id/textDescription"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/dimen0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="Descrição"
+        android:layout_marginStart="@dimen/dimen10dp"
+        android:text="@string/descricao"
         android:textAlignment="gravity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/imageTask"
@@ -30,27 +30,27 @@
         android:id="@+id/textPriority"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:text="Prioridade"
+        android:layout_marginStart="@dimen/dimen10dp"
+        android:layout_marginTop="@dimen/dimen10dp"
+        android:text="@string/prioridade"
         app:layout_constraintStart_toEndOf="@id/imageTask"
         app:layout_constraintTop_toBottomOf="@id/textDescription" />
 
     <TextView
         android:id="@+id/textDueDate"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/dimen0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Date"
+        android:layout_marginTop="@dimen/dimen10dp"
+        android:text="@string/date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textDescription" />
 
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="20dp"
-        android:background="#ececec"
+        android:layout_height="@dimen/dimen1dp"
+        android:layout_marginTop="@dimen/dimen20dp"
+        android:background="@color/gray_background_view_task_form"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textPriority" />

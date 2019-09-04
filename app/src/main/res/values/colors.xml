@@ -6,4 +6,5 @@
     <color name="colorDefaultBackground">#F6F6F6</color>
     <color name="colorGrayText">#C1C1C1</color>
     <color name="colorDescriptionTask">#535353</color>
+    <color name="gray_background_view_task_form">#ececec</color>
 </resources>

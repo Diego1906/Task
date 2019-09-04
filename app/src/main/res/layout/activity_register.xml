@@ -11,7 +11,7 @@
     <EditText
         android:id="@+id/editName"
         style="@style/mGrayEditText"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/dimen0dp"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_name"
         android:hint="@string/nome"
@@ -23,7 +23,7 @@
     <EditText
         android:id="@+id/editEmail"
         style="@style/mGrayEditText"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/dimen0dp"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_mail"
         android:hint="@string/email"
@@ -36,7 +36,7 @@
     <EditText
         android:id="@+id/editPassword"
         style="@style/mGrayEditText"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/dimen0dp"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_lock"
         android:hint="@string/senha"
@@ -51,7 +51,7 @@
         style="@style/mDefaultButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="@dimen/dimen50dp"
         android:text="@string/cadastrar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

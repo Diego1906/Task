@@ -33,7 +33,7 @@ class TaskDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_
         """CREATE TABLE ${TASK.TABLE_NAME} ( 
                 ${TASK.COLUMNS.ID} INTEGER PRIMARY KEY AUTOINCREMENT,
                 ${TASK.COLUMNS.USER_ID} INTEGER,
-                ${TASK.COLUMNS.PRIORITYID} INTEGER,
+                ${TASK.COLUMNS.PRIORITY_ID} INTEGER,
                 ${TASK.COLUMNS.DESCRIPTION} TEXT,
                 ${TASK.COLUMNS.COMPLETE} INTEGER,
                 ${TASK.COLUMNS.DUEDATE} TEXT

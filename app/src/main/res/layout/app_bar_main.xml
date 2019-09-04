@@ -8,7 +8,7 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="@dimen/dimen130dp"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
@@ -22,16 +22,18 @@
             android:id="@+id/textHello"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="80dp"
-            android:text="Olá, usuário!"
-            android:textSize="20sp" />
+            android:paddingStart="@dimen/dimen80dp"
+            android:paddingEnd="@dimen/dimen80dp"
+            android:text="@string/ola_usuario"
+            android:textSize="@dimen/dimen20sp" />
 
         <TextView
             android:id="@+id/textDateDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="80dp"
-            android:text="Domingo, 25 de agosto de 2019" />
+            android:paddingStart="@dimen/dimen80dp"
+            android:paddingEnd="@dimen/dimen80dp"
+            android:text="@string/domingo_25_de_agosto_de_2019" />
 
     </android.support.design.widget.AppBarLayout>
 
