@@ -27,8 +27,8 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener,
     private lateinit var mPriorityBusiness: PriorityBusiness
     private lateinit var mTaskBusiness: TaskBusiness
     private lateinit var mSecurityPreferences: SecurityPreferences
+    private lateinit var mSimpleDateFormat: SimpleDateFormat
 
-    private val mSimpleDateFormat = SimpleDateFormat(getString(R.string.pattern_date))
     private var mTaskId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +38,7 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener,
         mPriorityBusiness = PriorityBusiness(this)
         mTaskBusiness = TaskBusiness(this)
         mSecurityPreferences = SecurityPreferences(this)
+        mSimpleDateFormat = SimpleDateFormat(getString(R.string.pattern_date))
 
         setListeners()
         loadPriorities()

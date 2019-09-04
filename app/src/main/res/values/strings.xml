@@ -40,7 +40,7 @@
     <string name="cancelar">Cancelar</string>
     <string name="remover">Remover</string>
     <string name="remover_tarefa">Deseja remover a tarefa</string>
-    <string name="ola">Olá,</string>
+    <string name="ola">Olá, </string>
     <string name="domingo">Domingo</string>
     <string name="segunda">Segunda-feira</string>
     <string name="terca">Terça-feira</string>
@@ -65,7 +65,8 @@
     <string name="clique_para_selecionar_a_data">Clique para selecionar a data</string>
     <string name="ola_usuario">Olá, usuário!</string>
     <string name="domingo_25_de_agosto_de_2019">Domingo, 25 de agosto de 2019</string>
-    <string name="descricao">Descrição</string>
-    <string name="prioridade">Prioridade</string>
     <string name="date">Date</string>
+    <string name="feitas">Feitas</string>
+    <string name="pendentes">Pendentes</string>
+    <string name="sair">Sair</string>
 </resources>
