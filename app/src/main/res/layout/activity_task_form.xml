@@ -85,7 +85,7 @@
             android:layout_marginTop="@dimen/dimen24dp"
             android:background="@android:color/transparent"
             android:gravity="center_vertical"
-            android:text="@string/clique_para_selecionar_a_data"
+            android:hint="@string/clique_para_selecionar_a_data"
             android:textColor="@color/colorGrayText"
             android:textColorHint="@color/colorGrayText"
             android:textSize="@dimen/dimen14sp"

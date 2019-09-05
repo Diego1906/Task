@@ -14,6 +14,7 @@ import com.teste.task.constants.TaskConstants
 import com.teste.task.entities.PriorityEntity
 import com.teste.task.entities.TaskEntity
 import com.teste.task.util.SecurityPreferences
+import com.teste.task.util.ValidationException
 import kotlinx.android.synthetic.main.activity_task_form.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -150,6 +151,10 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener,
 
             finish()
 
+        } catch (e: ValidationException) {
+            e.message?.let {
+                messageShow(it)
+            }
         } catch (e: Exception) {
             messageShow(getString(R.string.erro_inesperado))
         }

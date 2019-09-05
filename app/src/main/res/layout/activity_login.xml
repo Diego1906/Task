@@ -30,7 +30,6 @@
         android:layout_marginEnd="@dimen/dimen16dp"
         android:drawableStart="@drawable/ic_user"
         android:drawablePadding="@dimen/dimen10dp"
-        android:elevation="@dimen/dimen5dp"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:maxLines="1"

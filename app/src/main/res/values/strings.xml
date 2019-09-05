@@ -69,4 +69,6 @@
     <string name="feitas">Feitas</string>
     <string name="pendentes">Pendentes</string>
     <string name="sair">Sair</string>
+    <string name="botao_entrar">Botão entrar</string>
+    <string name="necessario_preencher_todos_campos">É necessário preencher todos os campos.</string>
 </resources>
